@@ -1,0 +1,12 @@
+CREATE TABLE post (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    body VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL,
+    is_published BOOLEAN NOT NULL DEFAULT FALSE,
+    is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP NOT NULL,
+    published_at TIMESTAMP NULL
+);
+
+CREATE UNIQUE INDEX idx_post_slug ON post (slug);
