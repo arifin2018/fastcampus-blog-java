@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.arifin.blog.dto.CommentRequestDto;
 import com.arifin.blog.entity.Comment;
 import com.arifin.blog.service.CommentService;
 
@@ -33,7 +34,7 @@ public class CommentController {
     }
 
     @PostMapping
-    public Comment createComment(@RequestBody Comment comment) {
+    public Comment createComment(@RequestBody CommentRequestDto comment) {
         return commentService.createComment(comment);
     }
 }

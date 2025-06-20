@@ -24,7 +24,7 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    @GetMapping("/")
+    @GetMapping
     public List<Post> getPosts(){
         return postService.getPosts();
     }
