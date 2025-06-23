@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.arifin.blog.dto.CreatePostRequest;
 import com.arifin.blog.entity.Post;
+import com.arifin.blog.response.CreatePostResponse;
 import com.arifin.blog.service.PostService;
 
 @RestController
@@ -34,14 +35,33 @@ public class PostController {
         return postService.getPostBySlug(slug);
     }
 
-    @PostMapping("/")
-    public Post createPost(@RequestBody Post post){
-        return postService.createPost(post);
+    @PostMapping
+    public CreatePostResponse createPost(@RequestBody CreatePostRequest createPostRequest){
+        Post post = new Post();
+        post.setTitle(createPostRequest.getTitle());
+        post.setBody(createPostRequest.getBody());
+        post.setCommentCount(0L);
+        post.setSlug(createPostRequest.getSlug());
+
+        return CreatePostResponse.builder()
+                .title(post.getTitle())
+                .body(post.getBody())
+                .slug(post.getSlug())
+                .build();
     }
 
     @PutMapping("/{slug}")
-    public Post updatePostBySlug(@PathVariable String slug, @RequestBody Post postBody){
-        return postService.updatePostBySlug(slug, postBody);
+    public CreatePostResponse updatePostBySlug(@PathVariable String slug, @RequestBody CreatePostRequest createPostRequest){
+        Post post = new Post();
+        post.setTitle(createPostRequest.getTitle());
+        post.setBody(createPostRequest.getBody());
+        post.setCommentCount(0L);
+        post.setSlug(createPostRequest.getSlug());
+        return CreatePostResponse.builder()
+                .title(post.getTitle())
+                .body(post.getBody())
+                .slug(post.getSlug())
+                .build();
     }
 
     @DeleteMapping("/{id}")
