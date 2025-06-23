@@ -1,6 +1,5 @@
 package com.arifin.blog.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,8 @@ import com.arifin.blog.dto.CreatePostRequest;
 import com.arifin.blog.entity.Post;
 import com.arifin.blog.response.CreatePostResponse;
 import com.arifin.blog.service.PostService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -36,7 +37,7 @@ public class PostController {
     }
 
     @PostMapping
-    public CreatePostResponse createPost(@RequestBody CreatePostRequest createPostRequest){
+    public CreatePostResponse createPost(@Valid @RequestBody CreatePostRequest createPostRequest){
         Post post = new Post();
         post.setTitle(createPostRequest.getTitle());
         post.setBody(createPostRequest.getBody());
