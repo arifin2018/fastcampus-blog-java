@@ -1,7 +1,8 @@
-package com.arifin.blog.entity;
+package com.arifin.blog.entity.comments;
 
 import java.time.Instant;
 
+import com.arifin.blog.entity.posts.Post;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -10,13 +11,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Data;
 
 @Data
 @Builder

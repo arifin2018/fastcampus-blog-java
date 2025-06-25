@@ -6,7 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import com.arifin.blog.entity.Post;
+import com.arifin.blog.entity.posts.Post;
+
 
 @Repository
 public interface PostRepository extends CrudRepository<Post,Integer>,PagingAndSortingRepository<Post,Integer> {

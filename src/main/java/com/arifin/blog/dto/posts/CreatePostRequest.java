@@ -1,11 +1,7 @@
-package com.arifin.blog.dto;
+package com.arifin.blog.dto.posts;
 
-import java.time.Instant;
-
-import org.springframework.validation.annotation.Validated;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

@@ -12,12 +12,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.arifin.blog.entity.Post;
+import com.arifin.blog.entity.posts.Post;
 import com.arifin.blog.exception.ApiException;
 import com.arifin.blog.exception.ApiHandler;
-import com.arifin.blog.mapper.PostMapper;
+import com.arifin.blog.mapper.posts.PostMapper;
 import com.arifin.blog.repository.PostRepository;
-import com.arifin.blog.response.CreatePostResponse;
+import com.arifin.blog.response.posts.CreatePostResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,7 @@
-package com.arifin.blog.response;
+package com.arifin.blog.response.comments;
 
-import com.arifin.blog.entity.Post;
+
+import com.arifin.blog.entity.posts.Post;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,5 @@
 package com.arifin.blog.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arifin.blog.dto.CreateCommentRequest;
-import com.arifin.blog.entity.Comment;
-import com.arifin.blog.response.CreateCommentResponse;
+import com.arifin.blog.dto.comments.CreateCommentRequest;
+import com.arifin.blog.entity.comments.Comment;
+import com.arifin.blog.response.comments.CreateCommentResponse;
 import com.arifin.blog.service.CommentService;
 
 import jakarta.validation.Valid;

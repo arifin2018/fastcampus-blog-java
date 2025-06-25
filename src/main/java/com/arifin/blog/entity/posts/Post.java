@@ -1,8 +1,9 @@
-package com.arifin.blog.entity;
+package com.arifin.blog.entity.posts;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
+
+import com.arifin.blog.entity.comments.Comment;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

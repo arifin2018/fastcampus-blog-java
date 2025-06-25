@@ -1,12 +1,12 @@
-package com.arifin.blog.mapper;
+package com.arifin.blog.mapper.posts;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-import com.arifin.blog.dto.CreatePostRequest;
-import com.arifin.blog.entity.Post;
-import com.arifin.blog.response.CreatePostResponse;
+import com.arifin.blog.dto.posts.CreatePostRequest;
+import com.arifin.blog.entity.posts.Post;
+import com.arifin.blog.response.posts.CreatePostResponse;
 
 @Mapper
 public interface PostMapper {

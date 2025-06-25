@@ -1,8 +1,4 @@
-package com.arifin.blog.dto;
-
-import java.time.Instant;
-
-import com.arifin.blog.entity.Post;
+package com.arifin.blog.dto.comments;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

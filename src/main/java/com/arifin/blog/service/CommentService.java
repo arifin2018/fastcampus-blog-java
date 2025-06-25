@@ -9,13 +9,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.arifin.blog.dto.CreateCommentRequest;
-import com.arifin.blog.entity.Comment;
-import com.arifin.blog.entity.Post;
-import com.arifin.blog.mapper.CommentMapper;
+import com.arifin.blog.dto.comments.CreateCommentRequest;
+import com.arifin.blog.entity.comments.Comment;
+import com.arifin.blog.entity.posts.Post;
 import com.arifin.blog.repository.CommentRepository;
 import com.arifin.blog.repository.PostRepository;
-import com.arifin.blog.response.CreateCommentResponse;
+import com.arifin.blog.response.comments.CreateCommentResponse;
+import com.arifin.blog.mapper.comments.CommentMapper;
 
 @Service
 public class CommentService {

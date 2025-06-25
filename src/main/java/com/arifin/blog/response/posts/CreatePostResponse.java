@@ -1,4 +1,4 @@
-package com.arifin.blog.response;
+package com.arifin.blog.response.posts;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetPostResponse {
+public class CreatePostResponse {
     private String title;
     private String body;
     private String path;

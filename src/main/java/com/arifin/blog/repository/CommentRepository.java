@@ -7,7 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.arifin.blog.entity.Comment;
+import com.arifin.blog.entity.comments.Comment;
+
 
 @Repository
 public interface CommentRepository extends CrudRepository<Comment, Integer> {

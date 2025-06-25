@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arifin.blog.dto.CreatePostRequest;
-import com.arifin.blog.entity.Post;
-import com.arifin.blog.mapper.PostMapper;
-import com.arifin.blog.response.CreatePostResponse;
+import com.arifin.blog.dto.posts.CreatePostRequest;
+import com.arifin.blog.entity.posts.Post;
+import com.arifin.blog.mapper.posts.PostMapper;
+import com.arifin.blog.response.posts.CreatePostResponse;
 import com.arifin.blog.service.PostService;
 
 import jakarta.validation.Valid;
