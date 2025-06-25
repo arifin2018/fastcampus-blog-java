@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.arifin.blog.dto.CreatePostRequest;
 import com.arifin.blog.entity.Post;
+import com.arifin.blog.mapper.PostMapper;
 import com.arifin.blog.response.CreatePostResponse;
 import com.arifin.blog.service.PostService;
 
@@ -32,36 +33,30 @@ public class PostController {
     }
 
     @GetMapping("/{slug}")
-    public Post getPostBySlug(@PathVariable String slug){
+    public CreatePostResponse getPostBySlug(@PathVariable String slug){
         return postService.getPostBySlug(slug);
     }
 
     @PostMapping
     public CreatePostResponse createPost(@Valid @RequestBody CreatePostRequest createPostRequest){
-        Post post = new Post();
-        post.setTitle(createPostRequest.getTitle());
-        post.setBody(createPostRequest.getBody());
+        Post post = PostMapper.Instance.map(createPostRequest);
         post.setCommentCount(0L);
         post.setSlug(createPostRequest.getSlug());
 
-        return CreatePostResponse.builder()
-                .title(post.getTitle())
-                .body(post.getBody())
-                .slug(post.getSlug())
-                .build();
+        post = postService.createPost(post);
+
+        return PostMapper.Instance.map(post);
     }
 
     @PutMapping("/{slug}")
     public CreatePostResponse updatePostBySlug(@PathVariable String slug, @RequestBody CreatePostRequest createPostRequest){
-        Post post = new Post();
-        post.setTitle(createPostRequest.getTitle());
-        post.setBody(createPostRequest.getBody());
-        post.setCommentCount(0L);
-        post.setSlug(createPostRequest.getSlug());
+        Post post = PostMapper.Instance.map(createPostRequest);
+        post = postService.updatePostBySlug(slug, post);
+
         return CreatePostResponse.builder()
                 .title(post.getTitle())
                 .body(post.getBody())
-                .slug(post.getSlug())
+                .path(post.getSlug())
                 .build();
     }
 
@@ -77,7 +72,6 @@ public class PostController {
 
     @PostMapping("/publish/test")
     public Post PublishPostTest(@PathVariable int id){
-        // ArrayList<Integer> cars = new ArrayList<>(Array);
         return postService.PublishPost(id);
     }
 }

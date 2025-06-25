@@ -1,16 +1,19 @@
 package com.arifin.blog.response;
 
+import com.arifin.blog.entity.Post;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreatePostResponse {
-    private String title;
+public class CreateCommentResponse {
+    private String name;
+    private String email;
+    private Post post;
     private String body;
-    private String path;
 }

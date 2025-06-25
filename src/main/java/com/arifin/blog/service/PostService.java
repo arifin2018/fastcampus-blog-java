@@ -5,12 +5,19 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.arifin.blog.entity.Post;
+import com.arifin.blog.exception.ApiException;
+import com.arifin.blog.exception.ApiHandler;
+import com.arifin.blog.mapper.PostMapper;
 import com.arifin.blog.repository.PostRepository;
+import com.arifin.blog.response.CreatePostResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -29,8 +36,20 @@ public class PostService {
         return result;
     }
 
-    public Post getPostBySlug(String slug){
-        return postRepository.findBySlugAndIsDeleted(slug,false).orElse(null);
+    public CreatePostResponse getPostBySlug(String slug){
+        // Post post =  postRepository.findBySlugAndIsDeleted(slug,false).orElseThrow(new Supplier<RuntimeException>() {
+        //     @Override
+        //     public RuntimeException get() {
+        //         return new ApiException("Not Found", HttpStatus.NOT_FOUND);
+        //     }
+        // });
+        Post post =  postRepository.findBySlugAndIsDeleted(slug,false).orElseThrow(new Supplier<RuntimeException>() {
+            @Override
+            public RuntimeException get() {
+                return new ResponseStatusException(HttpStatus.NOT_FOUND, "not found");
+            }
+        });
+        return PostMapper.Instance.map(post);
     }
 
     public Post createPost(Post post){
@@ -44,7 +63,6 @@ public class PostService {
             return null;
         }
         postBody.setId(savedPost.getId());
-        System.out.println(savedPost.getCreatedAt());
         return postRepository.save(postBody);
     }
 

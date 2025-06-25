@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreatePostResponse {
+public class GetPostResponse {
     private String title;
     private String body;
     private String path;

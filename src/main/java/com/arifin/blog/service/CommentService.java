@@ -9,12 +9,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.arifin.blog.dto.CommentRequestDto;
+import com.arifin.blog.dto.CreateCommentRequest;
 import com.arifin.blog.entity.Comment;
 import com.arifin.blog.entity.Post;
 import com.arifin.blog.mapper.CommentMapper;
 import com.arifin.blog.repository.CommentRepository;
 import com.arifin.blog.repository.PostRepository;
+import com.arifin.blog.response.CreateCommentResponse;
 
 @Service
 public class CommentService {
@@ -44,8 +45,8 @@ public class CommentService {
     }
     
     @Transactional
-    public Comment createComment(CommentRequestDto commentDto) {
-        Post post = postRepository.findBySlugAndIsDeleted(commentDto.getPostSlug(), false).orElse(null);
+    public CreateCommentResponse createComment(CreateCommentRequest commentDto) {
+        Post post = postRepository.findBySlugAndIsDeleted(commentDto.getSlug(), false).orElse(null);
         List<Comment> comments = commentRepository.findByPostId(post.getId());
         Comment comment = commentMapper.toEntity(commentDto);
         comment.setCreatedAt(Instant.now());
@@ -55,7 +56,7 @@ public class CommentService {
         post.setCommentCount((long) comments.size() + 1);
         postRepository.save(post);
 
-        return comment;
+        return commentMapper.toResponse(comment);
     }
 
 }
