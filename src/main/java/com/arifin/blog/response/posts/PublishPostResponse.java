@@ -7,15 +7,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @Data
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
-public class GetPostResponse {
-    private Integer id;
-    private String title;
-    private String body;
-    private String slug;
+@NoArgsConstructor
+public class PublishPostResponse {
     private Instant publishedAt;
-    private Long commentCount;
 }

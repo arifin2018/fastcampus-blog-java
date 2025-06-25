@@ -1,6 +1,6 @@
 package com.arifin.blog.response.posts;
 
-import java.time.Instant;
+import java.util.Locale.Category;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,13 +9,11 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class GetPostResponse {
-    private Integer id;
+@NoArgsConstructor
+public class UpdatePostBySlugResponse {
     private String title;
     private String body;
     private String slug;
-    private Instant publishedAt;
-    private Long commentCount;
+    private Category category;
 }

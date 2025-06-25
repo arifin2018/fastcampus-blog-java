@@ -1,5 +1,8 @@
 package com.arifin.blog.exception;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +19,13 @@ public class ApiHandler{
         List<String> errorMessages = List.of(exception.getMessage());
         ApiResponse response = ApiResponse.builder().ErrorMessage(errorMessages).build();
         return ResponseEntity.status(exception.getHttpStatus()).body(response);
+    }
+
+    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+    public ResponseEntity<ApiResponse> handler(SQLIntegrityConstraintViolationException exception) {
+        List<String> errorMessages = new ArrayList<>(Collections.singletonList(exception.getMessage()));
+        ApiResponse response = ApiResponse.builder().ErrorMessage(errorMessages).build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

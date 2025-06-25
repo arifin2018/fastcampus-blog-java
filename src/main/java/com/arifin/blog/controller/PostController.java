@@ -16,6 +16,9 @@ import com.arifin.blog.dto.posts.CreatePostRequest;
 import com.arifin.blog.entity.posts.Post;
 import com.arifin.blog.mapper.posts.PostMapper;
 import com.arifin.blog.response.posts.CreatePostResponse;
+import com.arifin.blog.response.posts.DeletePostByIdResponse;
+import com.arifin.blog.response.posts.GetPostResponse;
+import com.arifin.blog.response.posts.PublishPostResponse;
 import com.arifin.blog.service.PostService;
 
 import jakarta.validation.Valid;
@@ -23,12 +26,11 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
-
     @Autowired
     PostService postService;
 
     @GetMapping
-    public List<Post> getPosts(){
+    public List<GetPostResponse> getPosts(){
         return postService.getPosts();
     }
 
@@ -39,39 +41,39 @@ public class PostController {
 
     @PostMapping
     public CreatePostResponse createPost(@Valid @RequestBody CreatePostRequest createPostRequest){
-        Post post = PostMapper.Instance.map(createPostRequest);
+        Post post = PostMapper.Instance.mapToCreatePostResponse(createPostRequest);
         post.setCommentCount(0L);
         post.setSlug(createPostRequest.getSlug());
 
         post = postService.createPost(post);
 
-        return PostMapper.Instance.map(post);
+        return PostMapper.Instance.mapToCreatePostResponse(post);
     }
 
     @PutMapping("/{slug}")
     public CreatePostResponse updatePostBySlug(@PathVariable String slug, @RequestBody CreatePostRequest createPostRequest){
-        Post post = PostMapper.Instance.map(createPostRequest);
+        Post post = PostMapper.Instance.mapToCreatePostResponse(createPostRequest);
         post = postService.updatePostBySlug(slug, post);
 
         return CreatePostResponse.builder()
                 .title(post.getTitle())
                 .body(post.getBody())
-                .path(post.getSlug())
+                .slug(post.getSlug())
                 .build();
     }
 
     @DeleteMapping("/{id}")
-    public Boolean deletePostById(@PathVariable int id){
+    public DeletePostByIdResponse deletePostById(@PathVariable int id){
         return postService.deletePostById(id);
     }
 
     @PostMapping("/{id}/publish")
-    public Post PublishPost(@PathVariable int id){
+    public PublishPostResponse PublishPost(@PathVariable int id){
         return postService.PublishPost(id);
     }
 
     @PostMapping("/publish/test")
-    public Post PublishPostTest(@PathVariable int id){
+    public PublishPostResponse PublishPostTest(@PathVariable int id){
         return postService.PublishPost(id);
     }
 }
